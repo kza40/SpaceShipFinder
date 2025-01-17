@@ -69,13 +69,6 @@ SpaceShipFinder is a game developed for **CMPT 276 (Introduction to Software Eng
 - Implement animations for spaceship movement.
 - Integrate a leaderboard to track high scores.
 
----
-
-## Contributors
-- **Kiarash** and team
 
 ---
-
-## License
-This project is licensed under the [MIT License](LICENSE).
 
