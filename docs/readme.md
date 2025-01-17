@@ -62,10 +62,3 @@ SpaceShipFinder is a game developed for **CMPT 276 (Introduction to Software Eng
 ## Challenges Faced
 - **Mathematics and Mechanics**: Designing the logic for how spaceships would move and interact was one of the most challenging aspects of development.
 
----
-
-## Future Enhancements
-- Add more difficulty levels.
-- Implement animations for spaceship movement.
-- Integrate a leaderboard to track high scores.
-
