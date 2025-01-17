@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_menu_wall"
+    tools:context=".GameSetting">
+
+    <Button
+        android:id="@+id/ReturnToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.986" />
+
+    <RadioGroup
+        android:id="@+id/DimensionOptions"
+        android:layout_width="291dp"
+        android:layout_height="162dp"
+        android:shadowColor="#BDAC0F"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.557">
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="117dp"
+        android:layout_height="51dp"
+        android:text="@string/confirm"
+        app:layout_constraintBottom_toTopOf="@+id/ReturnToMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <RadioGroup
+        android:id="@+id/fighterOptions"
+        android:layout_width="231dp"
+        android:layout_height="166dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="109dp"
+        android:shadowColor="#BDAC0F"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/DimensionOptions"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectFighters">
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/selectDimentions"
+        android:layout_width="268dp"
+        android:layout_height="41dp"
+        android:text="@string/selectDimentions"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.243" />
+
+    <TextView
+        android:id="@+id/selectFighters"
+        android:layout_width="239dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="101dp"
+        android:text="@string/selectFighters"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/fighterOptions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

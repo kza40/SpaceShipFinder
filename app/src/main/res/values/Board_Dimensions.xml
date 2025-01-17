@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //option to set the dimensions
+    <integer-array name="Board_Rows">
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </integer-array>
+
+    <integer-array name="Board_Columns">
+        <item>6</item>
+        <item>10</item>
+        <item>15</item>
+    </integer-array>
+</resources>

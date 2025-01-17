@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SpaceShip Finder</string>
+    <string name="hyperlink">Hyperlink to the CMPT 276 home page: <a href="https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">CMPT 276 HOME PAGE</a></string>
+    <string name="selectDimentions">Select the number of dimensions:</string>
+    <string name="selectFighters">Select the number of fighters:</string>
+    <string name="mainMenu">Main Menu</string>
+    <string name="spaceship_finder">SpaceShip Finder</string>
+    <string name="find_all_enemy_fighters">Find All Enemy Fighters</string>
+    <string name="by_kiarash_zamani">By Kiarash Zamani</string>
+    <string name="help_section">HELP SECTION</string>
+    <string name="start_game">Start Game</string>
+    <string name="options">Options</string>
+    <string name="how_to_play">HOW TO PLAY: Enemy fighters are hiding! And the resistance needs your help to find them! The board has a certain number of fighters underneath, that you may try to find by clicking on the tiles. If there isn\'t a fighter underneath it will reveal how many fighters are in that row and column. If there is a fighter underneath, it will reveal the fighter. Find all the fighters with the last amount of taps possible to win. May the force be with you!</string>
+    <string name="back">BACK</string>
+    <string name="citations">Citations:</string>
+    <string name="references">x wing https://www.denofgeek.com/wp-content/uploads/2019/12/x-wing.jpg?w=1024 main wallpaper https://www.wallpaperflare.com/saturn-planet-illustration-star-wars-battlefront-star-destroyer-wallpaper-hgyyf</string>
+    <string name="confirm">CONFIRM</string>
+</resources>

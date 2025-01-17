@@ -1,0 +1,1461 @@
+Index: ../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Game.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Game.java b/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Game.java
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Game.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,112 +0,0 @@
+-/*
+-
+-    represents the game
+- */
+-
+-package cmpt276.as1.Model;
+-
+-import java.time.LocalDateTime;
+-import java.time.format.DateTimeFormatter;
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class Game {
+-
+-
+-
+-    private LocalDateTime dateTime;
+-    private List<Player> players = new ArrayList<>();
+-    private List<Player> winnerId = new ArrayList<>();
+-
+-    public LocalDateTime getDateTime(){
+-        return dateTime;
+-    }
+-
+-    public void setDateTime(LocalDateTime dateTime){
+-        this.dateTime = dateTime;
+-    }
+-
+-
+-
+-    public void Game(Game g){
+-        this.dateTime = g.getDateTime();
+-        this.players = g.getPlayers();
+-    }
+-
+-
+-    public List<Player> getPlayers() {
+-        return players;
+-    }
+-
+-    public void setPlayers(List<Player> players) {
+-        this.players = players;
+-    }
+-
+-
+-
+-    public void setWinnerId() {
+-
+-        int maxScore = players.get(0).getScore().getPlayerScore();
+-
+-        for(Player p : players){
+-            if(p.getScore().getPlayerScore() > maxScore){
+-                maxScore = p.getScore().getPlayerScore();
+-            }
+-        }
+-        for(Player p2 : players){
+-            if(p2.getScore().getPlayerScore()==maxScore){
+-                winnerId.add(p2);
+-            }
+-        }
+-    }
+-
+-
+-
+-    @Override
+-    public String toString() {
+-
+-        //putting each score in the list
+-        List<Integer> scores = new ArrayList<>();
+-        for (Player p : players) {
+-            scores.add(p.getScore().getPlayerScore());
+-        }
+-
+-        //putting it in a string
+-        int size = scores.size();
+-        StringBuilder val1 = new StringBuilder();
+-
+-        for (int i = 0; i < (size-1); i++) {
+-            val1.append(scores.get(i)).append(" vs ");
+-        }
+-        val1.append(scores.get(size-1)).append(", ");
+-
+-        //making a list for winners only
+-        List<Integer> playerId = new ArrayList<>();
+-        for (Player p2 : winnerId) {
+-            playerId.add(p2.getPlayerNum());
+-        }
+-
+-        //putting the winners in a string
+-        int size2 = playerId.size();
+-        StringBuilder val2 = new StringBuilder();
+-
+-        for(int j = 0; j<(size2-1); j++){
+-            val2.append(playerId.get(j)).append(", ");
+-        }
+-        val2.append(playerId.get(size2-1)).append(" ");
+-
+-        //trying to set data format
+-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+-        java.lang.String date = dateTime.format(formatter);
+-
+-        return val1 +"winner player(s): "+ val2 + " (@ " + date + ")";
+-
+-    }
+-
+-
+-
+-
+-
+-
+-
+-}
+Index: ../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/GameManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/GameManager.java b/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/GameManager.java
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/GameManager.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,41 +0,0 @@
+-/*
+-
+-represents the game manager
+- */
+-
+-package cmpt276.as1.Model;
+-
+-import java.util.ArrayList;
+-import java.util.Iterator;
+-import java.util.List;
+-
+-public class GameManager implements Iterable<Game>{
+-
+-    private List<Game> gameList = new ArrayList<>();
+-
+-    public Game retrieveById(int id){
+-        return gameList.get(id);
+-    }
+-
+-    public void addGame(Game game){
+-        gameList.add(game);
+-    }
+-
+-    public void removeById(int id){
+-        gameList.remove(id);
+-    }
+-
+-    public int gameSize(){
+-        return gameList.size();
+-    }
+-
+-
+-    @Override
+-    public Iterator<Game> iterator() {
+-        return gameList.iterator();
+-    }
+-
+-    public boolean isEmpty(){
+-        return gameList.isEmpty();
+-    }
+-}
+Index: ../Assignment1/gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/../Assignment1/gradle/wrapper/gradle-wrapper.properties b/../Assignment1/gradle/wrapper/gradle-wrapper.properties
+deleted file mode 100644
+--- a/../Assignment1/gradle/wrapper/gradle-wrapper.properties	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,6 +0,0 @@
+-#Sun Sep 11 12:31:25 PDT 2022
+-distributionBase=GRADLE_USER_HOME
+-distributionUrl=https\://services.gradle.org/distributions/gradle-7.3.3-bin.zip
+-distributionPath=wrapper/dists
+-zipStorePath=wrapper/dists
+-zipStoreBase=GRADLE_USER_HOME
+Index: ../Assignment1/app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/values/colors.xml b/../Assignment1/app/src/main/res/values/colors.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/values/colors.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <color name="purple_200">#FFBB86FC</color>
+-    <color name="purple_500">#FF6200EE</color>
+-    <color name="purple_700">#FF3700B3</color>
+-    <color name="teal_200">#FF03DAC5</color>
+-    <color name="teal_700">#FF018786</color>
+-    <color name="black">#FF000000</color>
+-    <color name="white">#FFFFFFFF</color>
+-</resources>
+\ No newline at end of file
+Index: ../Assignment1/app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/.gitignore b/../Assignment1/app/.gitignore
+deleted file mode 100644
+--- a/../Assignment1/app/.gitignore	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,1 +0,0 @@
+-/build
+\ No newline at end of file
+Index: ../Assignment1/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/build.gradle b/../Assignment1/app/build.gradle
+deleted file mode 100644
+--- a/../Assignment1/app/build.gradle	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,37 +0,0 @@
+-plugins {
+-    id 'com.android.application'
+-}
+-
+-android {
+-    compileSdk 32
+-
+-    defaultConfig {
+-        applicationId "cmpt276.as1"
+-        minSdk 29
+-        targetSdk 32
+-        versionCode 1
+-        versionName "1.0"
+-
+-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+-    }
+-
+-    buildTypes {
+-        release {
+-            minifyEnabled false
+-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+-        }
+-    }
+-    compileOptions {
+-        sourceCompatibility JavaVersion.VERSION_1_8
+-        targetCompatibility JavaVersion.VERSION_1_8
+-    }
+-}
+-
+-dependencies {
+-
+-    implementation 'androidx.appcompat:appcompat:1.5.1'
+-    implementation 'com.google.android.material:material:1.6.1'
+-    testImplementation 'junit:junit:4.13.2'
+-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+-}
+\ No newline at end of file
+Index: ../Assignment1/app/src/main/res/drawable/ic_launcher_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/drawable/ic_launcher_background.xml b/../Assignment1/app/src/main/res/drawable/ic_launcher_background.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/drawable/ic_launcher_background.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,170 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:width="108dp"
+-    android:height="108dp"
+-    android:viewportWidth="108"
+-    android:viewportHeight="108">
+-    <path
+-        android:fillColor="#3DDC84"
+-        android:pathData="M0,0h108v108h-108z" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M9,0L9,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,0L19,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,0L29,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,0L39,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,0L49,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,0L59,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,0L69,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,0L79,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M89,0L89,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M99,0L99,108"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,9L108,9"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,19L108,19"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,29L108,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,39L108,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,49L108,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,59L108,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,69L108,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,79L108,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,89L108,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M0,99L108,99"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,29L89,29"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,39L89,39"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,49L89,49"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,59L89,59"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,69L89,69"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M19,79L89,79"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M29,19L29,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M39,19L39,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M49,19L49,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M59,19L59,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M69,19L69,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-    <path
+-        android:fillColor="#00000000"
+-        android:pathData="M79,19L79,89"
+-        android:strokeWidth="0.8"
+-        android:strokeColor="#33FFFFFF" />
+-</vector>
+Index: ../Assignment1/lib/GameModule/src/test/java/cmpt276/as1/Model/PlayerScoreTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/src/test/java/cmpt276/as1/Model/PlayerScoreTest.java b/../Assignment1/lib/GameModule/src/test/java/cmpt276/as1/Model/PlayerScoreTest.java
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/src/test/java/cmpt276/as1/Model/PlayerScoreTest.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,78 +0,0 @@
+-package cmpt276.as1.Model;
+-
+-import static org.junit.jupiter.api.Assertions.*;
+-
+-import org.junit.jupiter.api.Test;
+-
+-class PlayerScoreTest {
+-    @Test
+-    void getNumberOfCards() {
+-        PlayerScore play = new PlayerScore();
+-        play.setNumberOfCards(100);
+-        assertEquals(100, play.getNumberOfCards());
+-    }
+-
+-    @Test
+-    void setNumberOfCards() {
+-        PlayerScore play = new PlayerScore();
+-        assertThrows(IllegalArgumentException.class,
+-                ()-> play.setNumberOfCards(-100));
+-        play.setNumberOfCards(0);
+-        assertEquals(0, play.getSumOfPoints());
+-    }
+-
+-
+-    @Test
+-    void getSumOfPoints() {
+-        PlayerScore play = new PlayerScore();
+-        play.setSumOfPoints(100);
+-        assertEquals(100, play.getSumOfPoints());
+-    }
+-
+-    @Test
+-    void setSumOfPoints(){
+-        PlayerScore play = new PlayerScore();
+-        assertThrows(IllegalArgumentException.class,
+-                ()-> play.setSumOfPoints(-100));
+-        play.setSumOfPoints(46);
+-        assertEquals(46, play.getSumOfPoints());
+-
+-
+-    }
+-
+-    @Test
+-    void getNumberOfWagerCards() {
+-        PlayerScore play = new PlayerScore();
+-        play.setNumberOfWagerCards(100);
+-        assertEquals(100, play.getNumberOfWagerCards());
+-    }
+-
+-    @Test
+-    void setNumberOfWagerCards() {
+-        PlayerScore play = new PlayerScore();
+-        assertThrows(IllegalArgumentException.class,
+-                ()-> play.setNumberOfWagerCards(-100)
+-        );
+-    }
+-
+-    @Test
+-    void setPlayerScore() {
+-        PlayerScore play = new PlayerScore();
+-        play.setNumberOfCards(12);
+-        play.setSumOfPoints(23);
+-        play.setNumberOfWagerCards(2);
+-        play.setPlayerScore();
+-        assertEquals(29, play.getPlayerScore());
+-        play.setNumberOfCards(0);
+-        assertEquals( 0 , play.getPlayerScore());
+-    }
+-
+-
+-    @Test
+-    void getPlayerScore() {
+-        PlayerScore play  = new PlayerScore();
+-        play.setNumberOfCards(2);
+-        play.setPlayerScore();
+-        assertEquals(-20, play.getPlayerScore());
+-    }
+-}
+\ No newline at end of file
+Index: ../Assignment1/app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/proguard-rules.pro b/../Assignment1/app/proguard-rules.pro
+deleted file mode 100644
+--- a/../Assignment1/app/proguard-rules.pro	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,21 +0,0 @@
+-# Add project specific ProGuard rules here.
+-# You can control the set of applied configuration files using the
+-# proguardFiles setting in build.gradle.
+-#
+-# For more details, see
+-#   http://developer.android.com/guide/developing/tools/proguard.html
+-
+-# If your project uses WebView with JS, uncomment the following
+-# and specify the fully qualified class name to the JavaScript interface
+-# class:
+-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+-#   public *;
+-#}
+-
+-# Uncomment this to preserve the line number information for
+-# debugging stack traces.
+-#-keepattributes SourceFile,LineNumberTable
+-
+-# If you keep the line number information, uncomment this to
+-# hide the original source file name.
+-#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: ../Assignment1/.idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/.idea/compiler.xml b/../Assignment1/.idea/compiler.xml
+deleted file mode 100644
+--- a/../Assignment1/.idea/compiler.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="1.8">
+-      <module name="Assignment_1.app" target="11" />
+-    </bytecodeTargetLevel>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: ../Assignment1/app/src/test/java/cmpt276/as1/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/test/java/cmpt276/as1/ExampleUnitTest.java b/../Assignment1/app/src/test/java/cmpt276/as1/ExampleUnitTest.java
+deleted file mode 100644
+--- a/../Assignment1/app/src/test/java/cmpt276/as1/ExampleUnitTest.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,17 +0,0 @@
+-package cmpt276.as1;
+-
+-import org.junit.Test;
+-
+-import static org.junit.Assert.*;
+-
+-/**
+- * Example local unit test, which will execute on the development machine (host).
+- *
+- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+- */
+-public class ExampleUnitTest {
+-    @Test
+-    public void addition_isCorrect() {
+-        assertEquals(4, 2 + 2);
+-    }
+-}
+\ No newline at end of file
+Index: ../Assignment1/lib/GameModule/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/build.gradle b/../Assignment1/lib/GameModule/build.gradle
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/build.gradle	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,16 +0,0 @@
+-plugins {
+-    id 'java-library'
+-}
+-
+-java {
+-    sourceCompatibility = JavaVersion.VERSION_1_8
+-    targetCompatibility = JavaVersion.VERSION_1_8
+-}
+-
+-test {
+-    useJUnitPlatform()
+-}
+-
+-dependencies {
+-    implementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+-}
+\ No newline at end of file
+Index: ../Assignment1/.idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/.idea/gradle.xml b/../Assignment1/.idea/gradle.xml
+deleted file mode 100644
+--- a/../Assignment1/.idea/gradle.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="GradleMigrationSettings" migrationVersion="1" />
+-  <component name="GradleSettings">
+-    <option name="linkedExternalProjectsSettings">
+-      <GradleProjectSettings>
+-        <option name="testRunner" value="GRADLE" />
+-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-        <option name="modules">
+-          <set>
+-            <option value="$PROJECT_DIR$" />
+-            <option value="$PROJECT_DIR$/lib" />
+-            <option value="$PROJECT_DIR$/lib/GameModule" />
+-          </set>
+-        </option>
+-      </GradleProjectSettings>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: ../Assignment1/app/src/main/res/values-night/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/values-night/themes.xml b/../Assignment1/app/src/main/res/values-night/themes.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/values-night/themes.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,16 +0,0 @@
+-<resources xmlns:tools="http://schemas.android.com/tools">
+-    <!-- Base application theme. -->
+-    <style name="Theme.Assignment1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+-        <!-- Primary brand color. -->
+-        <item name="colorPrimary">@color/purple_200</item>
+-        <item name="colorPrimaryVariant">@color/purple_700</item>
+-        <item name="colorOnPrimary">@color/black</item>
+-        <!-- Secondary brand color. -->
+-        <item name="colorSecondary">@color/teal_200</item>
+-        <item name="colorSecondaryVariant">@color/teal_200</item>
+-        <item name="colorOnSecondary">@color/black</item>
+-        <!-- Status bar color. -->
+-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+-        <!-- Customize your theme here. -->
+-    </style>
+-</resources>
+\ No newline at end of file
+Index: ../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/PlayerScore.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/PlayerScore.java b/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/PlayerScore.java
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/PlayerScore.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,69 +0,0 @@
+-/*
+-represents the players information and cards
+- */
+-
+-package cmpt276.as1.Model;
+-
+-public class PlayerScore {
+-
+-    private int numberOfCards;
+-    private int numberOfWagerCards;
+-    private int sumOfPoints;
+-    private int playerScore;
+-
+-
+-    public int getNumberOfCards() {
+-        return numberOfCards;
+-    }
+-
+-    public void setNumberOfCards(int numberOfCards) {
+-
+-        if(numberOfCards<0){
+-            throw new IllegalArgumentException("Number of cards cannot be negative. ");
+-        }
+-
+-        if(numberOfCards == 0){
+-            sumOfPoints = numberOfWagerCards = playerScore = 0;
+-        }
+-
+-        this.numberOfCards = numberOfCards;
+-    }
+-
+-    public int getNumberOfWagerCards() {
+-        return numberOfWagerCards;
+-    }
+-
+-    public void setNumberOfWagerCards(int numberOfWagerCards) {
+-        if(numberOfWagerCards<0){
+-            throw new IllegalArgumentException("Number of wager cards cannot be negative. ");
+-        }
+-        this.numberOfWagerCards = numberOfWagerCards;
+-    }
+-
+-    public int getSumOfPoints() {
+-        return sumOfPoints;
+-    }
+-
+-    public void setSumOfPoints(int sumOfPoints) {
+-        if(sumOfPoints<0){
+-            throw new IllegalArgumentException("sum of points cannot be negative. ");
+-        }
+-        this.sumOfPoints = sumOfPoints;
+-    }
+-
+-    public void setPlayerScore(){
+-        if ( numberOfCards == 0){
+-            playerScore = 0;
+-            return;
+-        }
+-        playerScore = (sumOfPoints-20) * (numberOfWagerCards+1);
+-
+-        if(numberOfCards >= 8 ){
+-            playerScore+=20;
+-        }
+-    }
+-
+-    public int getPlayerScore(){
+-        return playerScore;
+-    }
+-}
+Index: ../Assignment1/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/.idea/vcs.xml b/../Assignment1/.idea/vcs.xml
+deleted file mode 100644
+--- a/../Assignment1/.idea/vcs.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: ../Assignment1/app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/values/themes.xml b/../Assignment1/app/src/main/res/values/themes.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/values/themes.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,16 +0,0 @@
+-<resources xmlns:tools="http://schemas.android.com/tools">
+-    <!-- Base application theme. -->
+-    <style name="Theme.Assignment1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+-        <!-- Primary brand color. -->
+-        <item name="colorPrimary">@color/purple_500</item>
+-        <item name="colorPrimaryVariant">@color/purple_700</item>
+-        <item name="colorOnPrimary">@color/white</item>
+-        <!-- Secondary brand color. -->
+-        <item name="colorSecondary">@color/teal_200</item>
+-        <item name="colorSecondaryVariant">@color/teal_700</item>
+-        <item name="colorOnSecondary">@color/black</item>
+-        <!-- Status bar color. -->
+-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+-        <!-- Customize your theme here. -->
+-    </style>
+-</resources>
+\ No newline at end of file
+Index: ../Assignment1/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/.gitignore b/../Assignment1/.gitignore
+deleted file mode 100644
+--- a/../Assignment1/.gitignore	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,15 +0,0 @@
+-*.iml
+-.gradle
+-/local.properties
+-/.idea/caches
+-/.idea/libraries
+-/.idea/modules.xml
+-/.idea/workspace.xml
+-/.idea/navEditor.xml
+-/.idea/assetWizardSettings.xml
+-.DS_Store
+-/build
+-/captures
+-.externalNativeBuild
+-.cxx
+-local.properties
+Index: ../Assignment1/app/src/main/res/xml/backup_rules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/xml/backup_rules.xml b/../Assignment1/app/src/main/res/xml/backup_rules.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/xml/backup_rules.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,13 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?><!--
+-   Sample backup rules file; uncomment and customize as necessary.
+-   See https://developer.android.com/guide/topics/data/autobackup
+-   for details.
+-   Note: This file is ignored for devices older that API 31
+-   See https://developer.android.com/about/versions/12/backup-restore
+--->
+-<full-backup-content>
+-    <!--
+-   <include domain="sharedpref" path="."/>
+-   <exclude domain="sharedpref" path="device.xml"/>
+--->
+-</full-backup-content>
+\ No newline at end of file
+Index: ../Assignment1/app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/values/strings.xml b/../Assignment1/app/src/main/res/values/strings.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/values/strings.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,3 +0,0 @@
+-<resources>
+-    <string name="app_name">Assignment 1</string>
+-</resources>
+\ No newline at end of file
+Index: ../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/MyClass.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/MyClass.java b/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/MyClass.java
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/MyClass.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,24 +0,0 @@
+-/*
+-This is the main file and where the program starts from.
+-
+-
+-*/
+-package cmpt276.as1;
+-
+-import cmpt276.as1.Model.GameManager;
+-import cmpt276.as1.UI.TextUI;
+-
+-public class MyClass {
+-
+-    public static void main(String args[]) {
+-
+-        GameManager manager = new GameManager();
+-        TextUI ui = new TextUI(manager);
+-        ui.showMenu();
+-
+-    }
+-}
+-
+-
+-
+-
+Index: ../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Player.java b/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Player.java
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/Model/Player.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,30 +0,0 @@
+-/*
+-    Player information
+- */
+-
+-package cmpt276.as1.Model;
+-
+-public class Player {
+-
+-    PlayerScore score;
+-    int playerNum;
+-
+-    public PlayerScore getScore() {
+-        score.setPlayerScore();
+-        return score;
+-    }
+-
+-    public void setScore(PlayerScore score) {
+-        this.score = score;
+-    }
+-
+-    public int getPlayerNum() {
+-        return playerNum;
+-    }
+-
+-    public void setPlayerNum(int playerNum) {
+-        this.playerNum = playerNum;
+-    }
+-
+-
+-}
+Index: ../Assignment1/lib/GameModule/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/.gitignore b/../Assignment1/lib/GameModule/.gitignore
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/.gitignore	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,1 +0,0 @@
+-/build
+\ No newline at end of file
+Index: ../Assignment1/app/src/main/res/xml/data_extraction_rules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/xml/data_extraction_rules.xml b/../Assignment1/app/src/main/res/xml/data_extraction_rules.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/xml/data_extraction_rules.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,19 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?><!--
+-   Sample data extraction rules file; uncomment and customize as necessary.
+-   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
+-   for details.
+--->
+-<data-extraction-rules>
+-    <cloud-backup>
+-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
+-        <include .../>
+-        <exclude .../>
+-        -->
+-    </cloud-backup>
+-    <!--
+-    <device-transfer>
+-        <include .../>
+-        <exclude .../>
+-    </device-transfer>
+-    -->
+-</data-extraction-rules>
+\ No newline at end of file
+Index: ../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml b/../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+-</adaptive-icon>
+\ No newline at end of file
+Index: ../Assignment1/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/build.gradle b/../Assignment1/build.gradle
+deleted file mode 100644
+--- a/../Assignment1/build.gradle	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,9 +0,0 @@
+-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+-plugins {
+-    id 'com.android.application' version '7.2.2' apply false
+-    id 'com.android.library' version '7.2.2' apply false
+-}
+-
+-task clean(type: Delete) {
+-    delete rootProject.buildDir
+-}
+\ No newline at end of file
+Index: ../Assignment1/.idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/.idea/.gitignore b/../Assignment1/.idea/.gitignore
+deleted file mode 100644
+--- a/../Assignment1/.idea/.gitignore	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: ../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/UI/TextUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/UI/TextUI.java b/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/UI/TextUI.java
+deleted file mode 100644
+--- a/../Assignment1/lib/GameModule/src/main/java/cmpt276/as1/UI/TextUI.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,195 +0,0 @@
+-/*
+-The user interface file
+- */
+-
+-package cmpt276.as1.UI;
+-
+-
+-import java.time.LocalDateTime;
+-import java.util.ArrayList;
+-import java.util.List;
+-import java.util.Scanner;
+-
+-import cmpt276.as1.Model.Game;
+-import cmpt276.as1.Model.GameManager;
+-import cmpt276.as1.Model.Player;
+-import cmpt276.as1.Model.PlayerScore;
+-
+-
+-
+-
+-public class TextUI {
+-
+-    private final GameManager manager;
+-
+-
+-
+-    public TextUI(GameManager manager) {
+-        this.manager = manager;
+-    }
+-
+-
+-    public void showMenu() {
+-
+-        boolean isDone = false;
+-
+-        while(!isDone){
+-            System.out.println("Menu: ");
+-            System.out.println("----------");
+-            System.out.println("1. List games");
+-            System.out.println("2. New game");
+-            System.out.println("3. Delete game");
+-            System.out.println("0. Exit");
+-
+-            System.out.print(":    ");
+-            Scanner myScanner = new Scanner(System.in);
+-            int option = myScanner.nextInt();
+-
+-            //listing the games
+-            if(option == 1){
+-                listGames();
+-            }
+-            //making a new game
+-            if (option ==2) {
+-
+-                Game newGame = new Game();
+-                newGame.setDateTime(LocalDateTime.now());
+-                int playerNum = 0;
+-
+-                boolean correctPlayerCount = false;
+-
+-                while (!correctPlayerCount) {
+-
+-                    System.out.println("\nHow many players?");
+-                    playerNum = myScanner.nextInt();
+-
+-                    if (playerNum < 1) {
+-                        System.out.println("\nInvalid input. \nTry again: ");
+-                    } else if (playerNum > 4) {
+-                        System.out.println("\nInvalid input. \nTry again: ");
+-                    } else {
+-                        correctPlayerCount = true;
+-                    }
+-
+-
+-                }
+-
+-
+-                List<Player> plays = new ArrayList<>();
+-
+-                for (int i = 0; i < playerNum; i++) {
+-                    Player currPlayer = new Player();
+-                    PlayerScore currScore = new PlayerScore();
+-
+-
+-                    boolean check = false; //for number of the cards
+-                    while (!check) {
+-
+-                        System.out.println("\nPlayer " + (i+1));
+-                        System.out.println("How many cards? ");
+-
+-                        int cards = myScanner.nextInt();
+-
+-                        if (cards < 0) {
+-                            System.out.println("\nNumber of cards cannot be negative!");
+-                        } else if (cards == 0) {
+-                            currScore.setNumberOfCards(0);
+-                            currPlayer.setScore(currScore);
+-                            currPlayer.setPlayerNum(i + 1);
+-                            plays.add(currPlayer);
+-                            check = true;
+-                        } else {
+-                            currScore.setNumberOfCards(cards);
+-                            check = true;
+-
+-
+-                            boolean check2 = false;//for sum of the points
+-                            while (!check2) {
+-                                System.out.println("Sum of cards?");
+-                                int sum = myScanner.nextInt();
+-
+-                                if (sum < 0) {
+-                                    System.out.println("Sum of cards cannot be negative! ");
+-                                } else {
+-                                    currScore.setSumOfPoints(sum);
+-                                    check2 = true;
+-
+-                                    //the following section is in the else section of check2 since if the sum are zero the wager cards dont matter
+-                                    boolean check3 = false; //for wager cards
+-                                    while (!check3) {
+-                                        System.out.println("How many wager cards?");
+-                                        int wagers = myScanner.nextInt();
+-
+-                                        if (wagers < 0) {
+-                                            System.out.println("Number of wager cards cannot be zero");
+-                                        } else {
+-                                            currScore.setNumberOfWagerCards(wagers);
+-                                            currPlayer.setScore(currScore);
+-                                            currPlayer.setPlayerNum(i + 1);
+-                                            plays.add(currPlayer);
+-                                            check3 = true;
+-                                        }
+-
+-                                    }
+-                                }
+-                            }
+-
+-                        }
+-                    }
+-                }
+-
+-                //putting the information into the game class
+-                newGame.setPlayers(plays);
+-                newGame.setWinnerId();
+-
+-                //putting the game information into the game manager class
+-                manager.addGame(newGame);
+-                System.out.println("\nAdding game: \n"+newGame);
+-            }
+-
+-            if(option ==3){
+-                listGames();
+-
+-                boolean deleteCheck = false;
+-                while(!deleteCheck){
+-                    System.out.println("\nWhich game to delete (0 for none)?");
+-                    int delGame = myScanner.nextInt();
+-
+-                    if(delGame<0){
+-                        System.out.println("\nYour choice cannot be negative");
+-                    } else if (delGame > manager.gameSize()){
+-                        System.out.println("\nThe number you have entered does not exist!");
+-                    } else if (delGame == 0){
+-                        deleteCheck = true;
+-                    } else {
+-                        manager.removeById(delGame - 1);
+-                        System.out.println("\nGame deleted.\n");
+-                        deleteCheck = true;
+-                    }
+-
+-                }
+-            }
+-
+-            if(option == 0){
+-                isDone = true;
+-                System.out.println("\nDone!");
+-            }
+-
+-            if(option>4) {
+-                System.out.println("\nInvalid value. Try again.");
+-            }
+-        }
+-
+-    }
+-
+-    public void listGames(){
+-        System.out.println("\nGames: ");
+-        if(manager.isEmpty()){
+-            System.out.println("No games\n");
+-            return;
+-        }
+-        for(int i =0; i <manager.gameSize(); i++){
+-            System.out.println((i+1)+". "+manager.retrieveById(i));
+-        }
+-    }
+-}
+Index: ../Assignment1/app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/AndroidManifest.xml b/../Assignment1/app/src/main/AndroidManifest.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/AndroidManifest.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,17 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    package="cmpt276.as1">
+-
+-    <application
+-        android:allowBackup="true"
+-        android:dataExtractionRules="@xml/data_extraction_rules"
+-        android:fullBackupContent="@xml/backup_rules"
+-        android:icon="@mipmap/ic_launcher"
+-        android:label="@string/app_name"
+-        android:roundIcon="@mipmap/ic_launcher_round"
+-        android:supportsRtl="true"
+-        android:theme="@style/Theme.Assignment1"
+-        tools:targetApi="31" />
+-
+-</manifest>
+\ No newline at end of file
+Index: ../Assignment1/gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/../Assignment1/gradle.properties b/../Assignment1/gradle.properties
+deleted file mode 100644
+--- a/../Assignment1/gradle.properties	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,21 +0,0 @@
+-# Project-wide Gradle settings.
+-# IDE (e.g. Android Studio) users:
+-# Gradle settings configured through the IDE *will override*
+-# any settings specified in this file.
+-# For more details on how to configure your build environment visit
+-# http://www.gradle.org/docs/current/userguide/build_environment.html
+-# Specifies the JVM arguments used for the daemon process.
+-# The setting is particularly useful for tweaking memory settings.
+-org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+-# When configured, Gradle will run in incubating parallel mode.
+-# This option should only be used with decoupled projects. More details, visit
+-# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+-# org.gradle.parallel=true
+-# AndroidX package structure to make it clearer which packages are bundled with the
+-# Android operating system, and which are packaged with your app"s APK
+-# https://developer.android.com/topic/libraries/support-library/androidx-rn
+-android.useAndroidX=true
+-# Enables namespacing of each library's R class so that its R class includes only the
+-# resources declared in the library itself and none from the library's dependencies,
+-# thereby reducing the size of the R class for that library
+-android.nonTransitiveRClass=true
+\ No newline at end of file
+Index: ../Assignment1/settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/settings.gradle b/../Assignment1/settings.gradle
+deleted file mode 100644
+--- a/../Assignment1/settings.gradle	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,17 +0,0 @@
+-pluginManagement {
+-    repositories {
+-        gradlePluginPortal()
+-        google()
+-        mavenCentral()
+-    }
+-}
+-dependencyResolutionManagement {
+-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+-    repositories {
+-        google()
+-        mavenCentral()
+-    }
+-}
+-rootProject.name = "Assignment 1"
+-//include ':app'
+-include ':lib:GameModule'
+Index: ../Assignment1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml b/../Assignment1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,30 +0,0 @@
+-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:aapt="http://schemas.android.com/aapt"
+-    android:width="108dp"
+-    android:height="108dp"
+-    android:viewportWidth="108"
+-    android:viewportHeight="108">
+-    <path android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
+-        <aapt:attr name="android:fillColor">
+-            <gradient
+-                android:endX="85.84757"
+-                android:endY="92.4963"
+-                android:startX="42.9492"
+-                android:startY="49.59793"
+-                android:type="linear">
+-                <item
+-                    android:color="#44000000"
+-                    android:offset="0.0" />
+-                <item
+-                    android:color="#00000000"
+-                    android:offset="1.0" />
+-            </gradient>
+-        </aapt:attr>
+-    </path>
+-    <path
+-        android:fillColor="#FFFFFF"
+-        android:fillType="nonZero"
+-        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
+-        android:strokeWidth="1"
+-        android:strokeColor="#00000000" />
+-</vector>
+\ No newline at end of file
+Index: ../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml b/../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+deleted file mode 100644
+--- a/../Assignment1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+-    <background android:drawable="@drawable/ic_launcher_background" />
+-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+-</adaptive-icon>
+\ No newline at end of file
+Index: ../Assignment1/app/src/androidTest/java/cmpt276/as1/ExampleInstrumentedTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/app/src/androidTest/java/cmpt276/as1/ExampleInstrumentedTest.java b/../Assignment1/app/src/androidTest/java/cmpt276/as1/ExampleInstrumentedTest.java
+deleted file mode 100644
+--- a/../Assignment1/app/src/androidTest/java/cmpt276/as1/ExampleInstrumentedTest.java	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,26 +0,0 @@
+-package cmpt276.as1;
+-
+-import android.content.Context;
+-
+-import androidx.test.platform.app.InstrumentationRegistry;
+-import androidx.test.ext.junit.runners.AndroidJUnit4;
+-
+-import org.junit.Test;
+-import org.junit.runner.RunWith;
+-
+-import static org.junit.Assert.*;
+-
+-/**
+- * Instrumented test, which will execute on an Android device.
+- *
+- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+- */
+-@RunWith(AndroidJUnit4.class)
+-public class ExampleInstrumentedTest {
+-    @Test
+-    public void useAppContext() {
+-        // Context of the app under test.
+-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+-        assertEquals("cmpt276.as1", appContext.getPackageName());
+-    }
+-}
+\ No newline at end of file
+Index: ../Assignment1/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Assignment1/.idea/misc.xml b/../Assignment1/.idea/misc.xml
+deleted file mode 100644
+--- a/../Assignment1/.idea/misc.xml	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
++++ /dev/null	(revision d400b757e2ca5ae16ba98e8b4ed4e6fc7b6520db)
+@@ -1,9 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
+-  </component>
+-</project>
+\ No newline at end of file
