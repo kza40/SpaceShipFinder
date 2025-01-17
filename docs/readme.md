@@ -50,10 +50,12 @@ SpaceShipFinder is a game developed for **CMPT 276 (Introduction to Software Eng
 ## Screenshots
 
 ### Gameplay
-![Gameplay Screenshot](path/to/gameplay_image.png)
+![GamePlay Screenshot](https://github.com/user-attachments/assets/58eefa60-0a20-46d0-a21c-58f0f4f60b5b)
+
 
 ### Victory Screen
-![Victory Screenshot](path/to/victory_image.png)
+![Victory Screenshot](https://github.com/user-attachments/assets/bae9ae8e-e2b1-4a31-99c9-f0e517d391cb)
+
 
 ---
 
