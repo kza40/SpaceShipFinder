@@ -31,7 +31,7 @@ SpaceShipFinder is a game developed for **CMPT 276 (Introduction to Software Eng
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repository/spaceshipfinder.git
+   git clone https://github.com/kza40/SpaceShipFinder.git
    ```
 2. Open the project in **Android Studio**.
 3. Build and run the project on an emulator or a physical Android device.
